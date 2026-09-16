@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Варіанти відгуків — Олеся Ярмолюк</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  body::after { display: none; }
+  .label { background: #0F1F1A; color: #F1D9A0; font: 800 13px/1 Manrope, sans-serif; letter-spacing: .16em; text-transform: uppercase; padding: 16px 28px; }
+  .label span { font-family: 'Cormorant Garamond', serif; font-size: 24px; letter-spacing: 0; text-transform: none; color: #FBF6EA; margin-left: 12px; font-weight: 500; }
+  mark { background: linear-gradient(transparent 55%, rgba(241, 217, 160, .75) 55%); color: var(--emerald); font-weight: 700; padding: 0 2px; }
+
+  /* ===== A: короткі картки із заголовком ===== */
+  .ra { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .ra__card { position: relative; background: linear-gradient(170deg, #FFFEFB, #FAF4E8); border-radius: 22px; padding: 30px 30px 26px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; border: 1px solid var(--line-gold); transition: transform .5s var(--ease), box-shadow .5s; }
+  .ra__card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+  .ra__stars { color: var(--gold); letter-spacing: 3px; font-size: 14px; }
+  .ra__card h3 { font-size: 30px; color: var(--emerald); margin: 12px 0 12px; line-height: 1.1; }
+  .ra__card p { font-size: 15.5px; color: var(--ink-2); }
+  .ra__foot { margin-top: auto; padding-top: 22px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .ra__who { display: flex; align-items: center; gap: 12px; font-size: 13.5px; color: var(--ink-2); line-height: 1.3; }
+  .ra__who b { display: block; color: var(--emerald); font-size: 15px; }
+  .chip { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: 6px 11px; border-radius: 8px; background: var(--emerald-soft); color: var(--emerald); white-space: nowrap; }
+
+  /* ===== B: слайдер, один великий відгук ===== */
+  .rb { display: grid; grid-template-columns: .9fr 1.1fr; border-radius: 28px; overflow: hidden; box-shadow: var(--shadow); min-height: 440px; }
+  .rb__side { background: var(--grad-emerald); color: #E4EAE3; padding: 50px; display: flex; flex-direction: column; position: relative; overflow: hidden; isolation: isolate; }
+  .rb__side::before { content: ''; position: absolute; z-index: -1; width: 420px; height: 420px; right: -160px; top: -180px; border-radius: 50%; background: radial-gradient(circle, rgba(201,164,92,.4), transparent 65%); }
+  .rb__big { font-family: var(--serif); font-size: 130px; line-height: .7; background: var(--grad-gold); -webkit-background-clip: text; background-clip: text; color: transparent; height: 70px; }
+  .rb__title { font-family: var(--serif); font-size: 44px; line-height: 1.1; color: #FBF6EA; margin-top: 20px; }
+  .rb__nav { margin-top: auto; display: flex; align-items: center; gap: 12px; }
+  .rb__nav button { width: 50px; height: 50px; border-radius: 12px; border: 1px solid rgba(241,217,160,.35); background: rgba(255,255,255,.06); color: var(--gold-light); font-size: 20px; }
+  .rb__nav button:hover { background: var(--grad-gold); color: var(--emerald-deep); }
+  .rb__count { margin-left: 8px; font-size: 14px; color: #9FB0A5; }
+  .rb__main { background: #FFFEFB; padding: 56px 56px 44px; display: flex; flex-direction: column; justify-content: center; }
+  .rb__text { font-family: var(--serif); font-size: 30px; line-height: 1.4; color: var(--ink); font-style: italic; }
+  .rb__text mark { font-style: italic; }
+  .rb__who { display: flex; align-items: center; gap: 14px; margin-top: 34px; font-size: 14px; color: var(--ink-2); }
+  .rb__who b { display: block; color: var(--emerald); font-size: 16px; }
+  .rb__dots { display: flex; gap: 8px; margin-top: 30px; }
+  .rb__dots i { width: 8px; height: 8px; border-radius: 99px; background: var(--champagne); transition: .4s; }
+  .rb__dots i.on { width: 28px; background: var(--grad-gold); }
+  .rb__fade { animation: rbIn .6s var(--ease); }
+  @keyframes rbIn { from { opacity: 0; transform: translateY(12px); } }
+
+  /* ===== C: «повідомлення з месенджера» ===== */
+  .rc { columns: 3; column-gap: 22px; }
+  .rc__item { break-inside: avoid; margin-bottom: 22px; background: #fff; border-radius: 22px; padding: 18px; box-shadow: var(--shadow-sm); border: 1px solid var(--line); }
+  .rc__head { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--line); margin-bottom: 14px; font-size: 13px; color: var(--ink-2); }
+  .rc__head b { display: block; color: var(--emerald); font-size: 14.5px; }
+  .rc__bubble { position: relative; background: var(--emerald-soft); border-radius: 18px 18px 18px 6px; padding: 14px 16px 22px; font-size: 15px; line-height: 1.55; color: var(--ink); }
+  .rc__bubble + .rc__bubble { margin-top: 8px; }
+  .rc__bubble small { position: absolute; right: 12px; bottom: 6px; font-size: 11px; color: #8A9A90; }
+  .rc__reply { margin: 10px 0 0 auto; width: fit-content; max-width: 80%; background: var(--grad-emerald); color: #F1EDE5; border-radius: 18px 18px 6px 18px; padding: 10px 14px; font-size: 14px; }
+
+  @media (max-width: 960px) {
+    .ra { grid-template-columns: 1fr 1fr; }
+    .rb { grid-template-columns: 1fr; }
+    .rb__side, .rb__main { padding: 36px 26px; }
+    .rb__title { font-size: 34px; }
+    .rb__text { font-size: 24px; }
+    .rc { columns: 2; }
+  }
+  @media (max-width: 680px) { .ra { grid-template-columns: 1fr; } .rc { columns: 1; } }
+</style>
+</head>
+<body>
+
+<div class="label">Варіант A<span>Короткі картки із заголовком і виділеною фразою</span></div>
+<section class="section section--tint"><div class="wrap">
+  <div class="head head--center"><span class="eyebrow">Відгуки</span><h2 class="h2">Що кажуть <em>клієнтки</em></h2></div>
+  <div class="ra" id="ra"></div>
+</div></section>
+
+<div class="label">Варіант B<span>Слайдер: один великий відгук за раз</span></div>
+<section class="section"><div class="wrap">
+  <div class="head head--center"><span class="eyebrow">Відгуки</span><h2 class="h2">Що кажуть <em>клієнтки</em></h2></div>
+  <div class="rb">
+    <div class="rb__side"><div class="rb__big">“</div><div class="rb__title" id="rb-title"></div>
+      <div class="rb__nav"><button id="rb-prev" aria-label="Попередній">←</button><button id="rb-next" aria-label="Наступний">→</button><span class="rb__count" id="rb-count"></span></div></div>
+    <div class="rb__main"><div id="rb-body"></div><div class="rb__dots" id="rb-dots"></div></div>
+  </div>
+</div></section>
+
+<div class="label">Варіант C<span>Повідомлення з месенджера</span></div>
+<section class="section section--tint"><div class="wrap">
+  <div class="head head--center"><span class="eyebrow">Відгуки</span><h2 class="h2">Мені <em>пишуть</em></h2><p class="lead">Повідомлення публікуються за згодою клієнток, імена змінено.</p></div>
+  <div class="rc" id="rc"></div>
+</div></section>
+
+<script>
+var R = [
+  { name: 'Катерина', meta: '29 років', tag: 'Консультації', letter: 'К', title: 'Знову за кермом',
+    text: 'Я прийшла, коли вже боялася виходити з дому сама. Олеся пояснила, що відбувається з моїм тілом, — і <mark>вперше за рік мені стало не так страшно</mark>. Зараз я знову їжджу за кермом.' },
+  { name: 'Наталія', meta: '42 роки, бухгалтерка', tag: 'Консультації', letter: 'Н', title: 'Я нарешті сплю',
+    text: 'Найцінніше — що це не про «поговорили й розійшлися». <mark>Після кожної сесії були конкретні практики.</mark> Я нарешті сплю.' },
+  { name: 'Софія', meta: '27 років, дизайнерка', tag: 'Програма', letter: 'С', title: 'Це не характер — це тривожність',
+    text: 'На програмі зрозуміла, що мій «характер» — це тривожність, і <mark>з нею можна працювати</mark>. Група дуже підтримувала, я не почувалася дивною.' },
+  { name: 'Оксана', meta: '36 років', tag: 'Консультації', letter: 'О', title: 'Зміни вже після 4-ї зустрічі',
+    text: 'Думала, що психолог — це роками. А <mark>відчутні зміни були вже після 4-ї зустрічі</mark>. Дякую за спокій і людяність.' },
+  { name: 'Юлія', meta: '33 роки, переїхала до Польщі', tag: 'Консультації', letter: 'Ю', title: 'Тепло і без осуду',
+    text: 'Олеся <mark>жодного разу не знецінила мій страх</mark>. Тепло, спокійно і дуже професійно.' },
+  { name: 'Андрій', meta: 'HR-директор IT-компанії', tag: 'Для компаній', letter: 'А', title: 'Команда користується досі',
+    text: 'Замовляли воркшоп для команди підтримки. <mark>Люди досі користуються дихальною технікою</mark> перед складними дзвінками.' }
+];
+var avatar = function (r) { return '<span class="avatar">' + r.letter + '</span>'; };
+
+document.getElementById('ra').innerHTML = R.map(function (r) {
+  return '<article class="ra__card"><span class="ra__stars">★★★★★</span><h3>' + r.title + '</h3><p>' + r.text + '</p>' +
+    '<div class="ra__foot"><div class="ra__who">' + avatar(r) + '<span><b>' + r.name + '</b>' + r.meta + '</span></div><span class="chip">' + r.tag + '</span></div></article>';
+}).join('');
+
+var i = 0;
+var show = function () {
+  var r = R[i];
+  document.getElementById('rb-title').innerHTML = '<span class="rb__fade" style="display:block">' + r.title + '</span>';
+  document.getElementById('rb-body').innerHTML = '<div class="rb__fade"><p class="rb__text">«' + r.text + '»</p>' +
+    '<div class="rb__who">' + avatar(r) + '<span><b>' + r.name + '</b>' + r.meta + ' · ' + r.tag + '</span></div></div>';
+  document.getElementById('rb-count').textContent = (i + 1) + ' / ' + R.length;
+  document.getElementById('rb-dots').innerHTML = R.map(function (_, k) { return '<i class="' + (k === i ? 'on' : '') + '"></i>'; }).join('');
+};
+document.getElementById('rb-prev').onclick = function () { i = (i + R.length - 1) % R.length; show(); };
+document.getElementById('rb-next').onclick = function () { i = (i + 1) % R.length; show(); };
+show();
+
+var times = ['09:14', '21:47', '18:02', '12:30', '16:55', '11:08'];
+document.getElementById('rc').innerHTML = R.map(function (r, k) {
+  var parts = r.text.split(/(?<=[.!?])\s+/);
+  return '<div class="rc__item"><div class="rc__head">' + avatar(r) + '<span><b>' + r.name + '</b>' + r.meta + '</span></div>' +
+    parts.map(function (t) { return '<div class="rc__bubble">' + t + '<small>' + times[k] + '</small></div>'; }).join('') +
+    '<div class="rc__reply">Дякую, що поділилися 🤍</div></div>';
+}).join('');
+</script>
+</body>
+</html>

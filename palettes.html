@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Варіанти палітри — Олеся Ярмолюк</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box} body{margin:0;font-family:Manrope,system-ui,sans-serif;background:#111;color:#fff}
+  .intro{padding:40px 24px 20px;text-align:center;background:#111}
+  .intro h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:46px;margin:0}
+  .intro p{color:#aaa;margin:8px 0 0}
+  .pal{position:relative;overflow:hidden;padding:64px 24px 70px;background:var(--bg);color:var(--text)}
+  .pal::before{content:'';position:absolute;width:720px;height:720px;right:-200px;top:-320px;border-radius:50%;background:radial-gradient(circle,var(--glow),transparent 62%);pointer-events:none}
+  .pal::after{content:'';position:absolute;width:520px;height:520px;left:-220px;bottom:-300px;border-radius:50%;background:radial-gradient(circle,var(--glow2),transparent 65%);pointer-events:none}
+  .in{position:relative;z-index:1;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .tag{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .tag b{font-size:11px;padding:5px 11px;border-radius:99px;background:var(--grad);color:var(--on-grad);letter-spacing:.1em}
+  h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:62px;line-height:1.02;margin:18px 0 18px;color:var(--head)}
+  h2 em{font-style:italic;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--muted);font-size:17px;line-height:1.6;max-width:520px;margin:0}
+  .btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+  .btn{padding:17px 30px;border-radius:99px;font-weight:700;font-size:15px;border:0;cursor:pointer;font-family:inherit}
+  .btn-p{background:var(--grad);color:var(--on-grad);box-shadow:0 0 0 1px rgba(255,255,255,.18) inset,0 14px 40px -10px var(--btn-glow)}
+  .btn-g{background:var(--glass);color:var(--head);border:1px solid var(--line);backdrop-filter:blur(10px)}
+  .swatches{display:flex;gap:10px;margin-top:34px;flex-wrap:wrap}
+  .sw{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:10.5px;color:var(--muted);letter-spacing:.04em}
+  .sw i{width:44px;height:44px;border-radius:14px;border:1px solid var(--line);display:block}
+  .cards{display:grid;gap:14px}
+  .card{position:relative;display:flex;gap:18px;align-items:flex-start;padding:22px 24px;border-radius:22px;background:var(--card);border:1px solid var(--line);backdrop-filter:blur(14px);box-shadow:0 20px 50px -30px rgba(0,0,0,.5)}
+  .card::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,var(--edge),transparent 45%,transparent 70%,var(--edge));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+  .num{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;font-weight:600;background:var(--grad);color:var(--on-grad);box-shadow:0 8px 24px -8px var(--btn-glow)}
+  .card p{margin:0;font-size:15.5px;line-height:1.55;color:var(--text)}
+  .price{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 24px;border-radius:22px;background:var(--hot);border:1px solid var(--line);color:var(--hot-text)}
+  .price small{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;opacity:.7}
+  .price b{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600}
+  .price .btn{padding:13px 22px;font-size:14px}
+  .name{position:absolute;left:24px;top:22px;z-index:2;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .name span{font-family:'Cormorant Garamond',serif;font-size:28px;letter-spacing:0;text-transform:none;font-weight:600;color:var(--head);margin-left:10px}
+  @media(max-width:860px){.in{grid-template-columns:1fr}h2{font-size:44px}.pal{padding-top:80px}}
+</style>
+</head>
+<body>
+<div class="intro"><h1>Варіанти палітри</h1><p>Той самий фрагмент сайту в п'яти кольорових рішеннях</p></div>
+<div id="list"></div>
+<script>
+var P = [
+  { n:'1', t:'Смарагд і шампань', note:'глибокий зелений + золото',
+    bg:'linear-gradient(160deg,#0F1F1A 0%,#16302A 55%,#0C1915 100%)', text:'#E7E2D6', head:'#F6F1E6', muted:'#A9B5A8',
+    grad:'linear-gradient(120deg,#C9A45C 0%,#F1D9A0 50%,#B8893F 100%)', 'on-grad':'#1A1508', 'btn-glow':'rgba(214,176,98,.55)',
+    glow:'rgba(201,164,92,.28)', glow2:'rgba(92,160,130,.25)', card:'rgba(255,255,255,.04)', glass:'rgba(255,255,255,.06)', line:'rgba(241,217,160,.16)', edge:'rgba(241,217,160,.55)',
+    hot:'rgba(201,164,92,.1)', 'hot-text':'#F6F1E6', sw:['#0F1F1A','#1E3A31','#C9A45C','#F1D9A0','#E7E2D6'] },
+  { n:'2', t:'Бордо і розове золото', note:'вино + пудра + мідь',
+    bg:'linear-gradient(160deg,#240B14 0%,#3A1322 55%,#1C0810 100%)', text:'#F0DFDC', head:'#FFF3EF', muted:'#C9A3A6',
+    grad:'linear-gradient(120deg,#E7B2A0 0%,#F8D9C8 45%,#C47E68 100%)', 'on-grad':'#2A0E16', 'btn-glow':'rgba(231,178,160,.55)',
+    glow:'rgba(231,150,140,.3)', glow2:'rgba(160,60,90,.35)', card:'rgba(255,255,255,.045)', glass:'rgba(255,255,255,.06)', line:'rgba(248,217,200,.16)', edge:'rgba(248,217,200,.6)',
+    hot:'rgba(231,178,160,.1)', 'hot-text':'#FFF3EF', sw:['#240B14','#5A1F33','#C47E68','#F8D9C8','#F0DFDC'] },
+  { n:'3', t:'Опівнічний сапфір', note:'темно-синій + лаванда + перли',
+    bg:'linear-gradient(160deg,#0B1026 0%,#141B3D 55%,#080C1C 100%)', text:'#DEE1F2', head:'#F4F5FC', muted:'#9EA6C9',
+    grad:'linear-gradient(120deg,#A89BFF 0%,#E1D6FF 50%,#8C7BEA 100%)', 'on-grad':'#11142E', 'btn-glow':'rgba(168,155,255,.6)',
+    glow:'rgba(140,123,234,.35)', glow2:'rgba(80,140,220,.3)', card:'rgba(255,255,255,.04)', glass:'rgba(255,255,255,.06)', line:'rgba(225,214,255,.15)', edge:'rgba(225,214,255,.6)',
+    hot:'rgba(168,155,255,.1)', 'hot-text':'#F4F5FC', sw:['#0B1026','#232C5E','#8C7BEA','#E1D6FF','#DEE1F2'] },
+  { n:'4', t:'Слива і персик', note:'аметист + теплий персиковий градієнт',
+    bg:'linear-gradient(160deg,#1C1025 0%,#2E1A3B 55%,#150B1C 100%)', text:'#EADFEF', head:'#FBF4FF', muted:'#B8A3C4',
+    grad:'linear-gradient(120deg,#C9A2FF 0%,#F7B6C8 50%,#FFC7A1 100%)', 'on-grad':'#24112F', 'btn-glow':'rgba(247,182,200,.55)',
+    glow:'rgba(201,162,255,.3)', glow2:'rgba(255,170,140,.25)', card:'rgba(255,255,255,.045)', glass:'rgba(255,255,255,.06)', line:'rgba(247,182,200,.16)', edge:'rgba(255,199,161,.6)',
+    hot:'rgba(201,162,255,.1)', 'hot-text':'#FBF4FF', sw:['#1C1025','#4A2C5E','#C9A2FF','#F7B6C8','#FFC7A1'] },
+  { n:'5', t:'Світлий люкс: айворі й бронза', note:'для тих, хто хоче світлий, але насичений',
+    bg:'linear-gradient(160deg,#FBF6EE 0%,#F3E8D8 60%,#EFE1CC 100%)', text:'#3A2A20', head:'#22160F', muted:'#8A7462',
+    grad:'linear-gradient(120deg,#8C5A34 0%,#C8925A 50%,#7A4A28 100%)', 'on-grad':'#FFF8EE', 'btn-glow':'rgba(140,90,52,.5)',
+    glow:'rgba(200,146,90,.35)', glow2:'rgba(150,110,80,.2)', card:'rgba(255,255,255,.7)', glass:'rgba(255,255,255,.55)', line:'rgba(122,74,40,.16)', edge:'rgba(200,146,90,.7)',
+    hot:'#22160F', 'hot-text':'#F6ECDD', sw:['#FBF6EE','#E6D3B8','#C8925A','#7A4A28','#22160F'] }
+];
+var html = P.map(function (p) {
+  var vars = Object.keys(p).filter(function (k) { return ['n','t','note','sw'].indexOf(k) < 0; })
+    .map(function (k) { return '--' + k + ':' + p[k]; }).join(';');
+  return '<section class="pal" style="' + vars + '">' +
+    '<div class="name">Варіант ' + p.n + '<span>' + p.t + '</span></div>' +
+    '<div class="in"><div>' +
+      '<span class="tag"><b>Преміум</b>' + p.note + '</span>' +
+      '<h2>Тривога не повинна <em>керувати</em> вашим життям</h2>' +
+      '<p class="sub">Допомагаю жінкам вийти з режиму постійної напруги й повернути спокій — науково доведеними методами.</p>' +
+      '<div class="btns"><button class="btn btn-p">Записатися −50%</button><button class="btn btn-g">Пройти тест</button></div>' +
+      '<div class="swatches">' + p.sw.map(function (c) { return '<span class="sw"><i style="background:' + c + '"></i>' + c + '</span>'; }).join('') + '</div>' +
+    '</div><div class="cards">' +
+      '<div class="card"><span class="num">01</span><p>Лягаєте спати — а в голові прокручується завтрашній день і «а що, якщо…»</p></div>' +
+      '<div class="card"><span class="num">02</span><p>Серце раптом калатає, бракує повітря, а лікарі кажуть: «Ви здорові»</p></div>' +
+      '<div class="price"><div><small>Пакет 5 сесій</small><b>8 000 грн</b></div><button class="btn btn-p">Обрати</button></div>' +
+    '</div></div></section>';
+}).join('');
+document.getElementById('list').innerHTML = html;
+</script>
+</body>
+</html>
