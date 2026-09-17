@@ -934,3 +934,18 @@ body.is-locked { overflow: hidden; }
 }
 
 .about__bridge { margin-top: 40px; }
+
+/* ---------- Мобільні виправлення ---------- */
+@media (max-width: 960px) {
+  /* «Про мене»: фото тримається в межах своєї рамки */
+  .about .portrait { position: relative; top: auto; }
+  /* шапка нижча, фото першого екрана починається під нею */
+  .header__in { height: 68px; }
+  .is-menu .nav { top: calc(68px + env(safe-area-inset-top, 0px)); }
+  .hero { padding-top: calc(68px + env(safe-area-inset-top, 0px)); }
+  .hero__photo { background-position: 50% 14%; }
+}
+@media (max-width: 680px) {
+  .about .portrait { max-width: 320px; }
+  .logo b { font-size: 23px; }
+}
